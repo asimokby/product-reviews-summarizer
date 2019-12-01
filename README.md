@@ -17,6 +17,9 @@ Bigrams in comments having to do with urgent issues can be found and displayed t
 ## Built With
 * [nltk](https://www.nltk.org/): used for nlp, utilized BigramCollocationFinder
 * [PyQt5](https://pypi.org/project/PyQt5/): for GUI
-* [BeautifulSoup](): for scraping webpage
-* [urlopen](): for scraping webpage
+* [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/): for scraping webpage
+* [urllib](https://docs.python.org/3/library/urllib.html): for scraping webpage
+
+## License
+
 
