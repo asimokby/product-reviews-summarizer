@@ -1,4 +1,5 @@
 # Product Comment Summarizer
+
 Extracting most commonly occuring bigrams from most positive and most negative comments for a product.
 
 ## The problem
@@ -21,5 +22,5 @@ Bigrams in comments having to do with urgent issues can be found and displayed t
 * [urllib](https://docs.python.org/3/library/urllib.html): for scraping webpage
 
 ## License
-
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
