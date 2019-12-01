@@ -23,6 +23,7 @@ import logging as log
 log.debug("DEBUGGING")
 ###########################
 WINDOW_WIDTH, WINDOW_HEIGHT = 1300, 600
+header_style = 'QGroupBox  {font-size: 16px; font:bold}'
 ############################
 
 class Window(QWidget):
@@ -39,6 +40,7 @@ class Window(QWidget):
         ######### Url Scraping
         self.text_input = QLineEdit() 
         self.urlGroupBox = QGroupBox("Url Scraping")
+
         
         self.text_input.setText(default_url)
         layout = QGridLayout()
@@ -50,6 +52,7 @@ class Window(QWidget):
         ######## Comment List
         self.commentListGroupBoxTitle = "Comment List"
         self.commentListGroupBox = QGroupBox(self.commentListGroupBoxTitle)
+        self.commentListGroupBox.setStyleSheet(header_style)
         layout = QGridLayout()
         self.commentListWidget = QListWidget()
         self.commentListWidget.setWordWrap(True)
@@ -58,6 +61,7 @@ class Window(QWidget):
         ####### Positive comments
         self.posCommentListGroupBoxTitle = "Very Positive Comments"
         self.posCommentListGroupBox = QGroupBox(self.posCommentListGroupBoxTitle)
+        self.posCommentListGroupBox.setStyleSheet(header_style)
         layout = QGridLayout()
         self.posCommentListWidget = QListWidget()
         self.posCommentListWidget.setWordWrap(True)
@@ -66,6 +70,7 @@ class Window(QWidget):
         ###### Negative comments
         self.negCommentListGroupBoxTitle = "Very Negative Comments"
         self.negCommentListGroupBox = QGroupBox(self.negCommentListGroupBoxTitle)
+        self.negCommentListGroupBox.setStyleSheet(header_style)
         layout = QGridLayout()
         self.negCommentListWidget = QListWidget()
         self.negCommentListWidget.setWordWrap(True)
@@ -76,16 +81,20 @@ class Window(QWidget):
 
     def createFeedbackGroupBoxes(self):
         self.posFeedbackGroupBox = QGroupBox("Most Common Positive Feedback")
+        self.posFeedbackGroupBox.setStyleSheet(header_style)
         layout = QGridLayout()
         self.positiveFeedbackTextEdit = QTextEdit()
         self.positiveFeedbackTextEdit.setReadOnly(True)
+        self.positiveFeedbackTextEdit.setStyleSheet("background-color: rgb(204, 255, 204);")
         layout.addWidget(self.positiveFeedbackTextEdit)
         self.posFeedbackGroupBox.setLayout(layout)
         ###################
         self.negFeedbackGroupBox = QGroupBox("Most Common Negative Feedback")
+        self.negFeedbackGroupBox.setStyleSheet(header_style)
         layout = QGridLayout()
         self.negativeFeedbackTextEdit = QTextEdit()
         self.negativeFeedbackTextEdit.setReadOnly(True)
+        self.negativeFeedbackTextEdit.setStyleSheet("background-color: rgb(255, 204, 204);")
         layout.addWidget(self.negativeFeedbackTextEdit)
         self.negFeedbackGroupBox.setLayout(layout)
 
@@ -126,23 +135,24 @@ class Window(QWidget):
             text += review
             bad_reviews.append(text)
         # change title
-        self.posCommentListGroupBox.setTitle(f"{self.posCommentListGroupBoxTitle} ({len(bad_reviews)})")
-        self.populate(self.negCommentListWidget, bad_reviews)
+        self.negCommentListGroupBox.setTitle(f"{self.negCommentListGroupBoxTitle} ({len(bad_reviews)})")
+        self.populate(self.negCommentListWidget, bad_reviews, colors=[QColor(255, 204, 204), QColor(255, 255, 255)])
 
         good_reviews = []
         for review in self.five_star_reviews:
             text = "★★★★★   "
             text += review
             good_reviews.append(text)
-        # change title
-        self.negCommentListGroupBox.setTitle(f"{self.negCommentListGroupBoxTitle} ({len(good_reviews)})")
-        self.populate(self.posCommentListWidget, good_reviews)
+        # change title        
+        self.posCommentListGroupBox.setTitle(f"{self.posCommentListGroupBoxTitle} ({len(good_reviews)})")
+        self.populate(self.posCommentListWidget, good_reviews, colors=[QColor(204, 255, 204), QColor(255, 255, 255)])
 
-    def populate(self, listWidget, docs):
+    def populate(self, listWidget, docs, colors=None):
         listWidget.clear()
         coin = 0
-        gray = QColor(232, 232, 232) # QColor("lightGray")
-        colors = [gray, QColor("white")]
+        if not colors:
+            gray = QColor(232, 232, 232) # QColor("lightGray")
+            colors = [gray, QColor("white")]
         for doc in docs:
             item = QListWidgetItem(doc)
             item.setBackground(colors[coin])
