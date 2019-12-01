@@ -28,6 +28,10 @@ Bigrams in comments having to do with urgent issues can be found and displayed t
 * [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/): for scraping webpage
 * [urllib](https://docs.python.org/3/library/urllib.html): for scraping webpage
 
+## Authors
+Ibrahim Tigrek
+Asim Okby
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
