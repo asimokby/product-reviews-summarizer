@@ -48,21 +48,24 @@ class Window(QWidget):
         layout.addWidget(pushButton, 0, 1)
         self.urlGroupBox.setLayout(layout)
         ######## Comment List
-        self.commentListGroupBox = QGroupBox("Comment List")
+        self.commentListGroupBoxTitle = "Comment List"
+        self.commentListGroupBox = QGroupBox(self.commentListGroupBoxTitle)
         layout = QGridLayout()
         self.commentListWidget = QListWidget()
         self.commentListWidget.setWordWrap(True)
         layout.addWidget(self.commentListWidget)
         self.commentListGroupBox.setLayout(layout)
         ####### Positive comments
-        self.posCommentListGroupBox = QGroupBox("Very Positive Comments")
+        self.posCommentListGroupBoxTitle = "Very Positive Comments"
+        self.posCommentListGroupBox = QGroupBox(self.posCommentListGroupBoxTitle)
         layout = QGridLayout()
         self.posCommentListWidget = QListWidget()
         self.posCommentListWidget.setWordWrap(True)
         layout.addWidget(self.posCommentListWidget)
         self.posCommentListGroupBox.setLayout(layout)
         ###### Negative comments
-        self.negCommentListGroupBox = QGroupBox("Very Negative Comments")
+        self.negCommentListGroupBoxTitle = "Very Negative Comments"
+        self.negCommentListGroupBox = QGroupBox(self.negCommentListGroupBoxTitle)
         layout = QGridLayout()
         self.negCommentListWidget = QListWidget()
         self.negCommentListWidget.setWordWrap(True)
@@ -104,6 +107,8 @@ class Window(QWidget):
             text += "☆" * (5 - int(rating))
             text += "   " + review
             starred_reviews.append(text)
+        # change title
+        self.commentListGroupBox.setTitle(f"{self.commentListGroupBoxTitle} ({len(starred_reviews)})")
         self.populate(self.commentListWidget, starred_reviews)
         # self.commentListWidget.addItem(QListWidgetItem(text))
 
@@ -120,16 +125,18 @@ class Window(QWidget):
             text = "★☆☆☆☆   "
             text += review
             bad_reviews.append(text)
+        # change title
+        self.posCommentListGroupBox.setTitle(f"{self.posCommentListGroupBoxTitle} ({len(bad_reviews)})")
         self.populate(self.negCommentListWidget, bad_reviews)
-            # self.negCommentListWidget.addItem(QListWidgetItem(text))
 
         good_reviews = []
         for review in self.five_star_reviews:
             text = "★★★★★   "
             text += review
             good_reviews.append(text)
+        # change title
+        self.negCommentListGroupBox.setTitle(f"{self.negCommentListGroupBoxTitle} ({len(good_reviews)})")
         self.populate(self.posCommentListWidget, good_reviews)
-            # self.posCommentListWidget.addItem(QListWidgetItem(text))
 
     def populate(self, listWidget, docs):
         listWidget.clear()
