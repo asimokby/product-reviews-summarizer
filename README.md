@@ -4,11 +4,13 @@ Extracting most commonly occuring bigrams from most positive and most negative c
 
 ## The problem
 
-The company often needs to know what specific topics their customers are talking about, whether this be good or bad.
+The company often needs to know what specific topics their customers are talking about, whether this be good or bad. However, going through all comments of the customers is inefficient. 
+
 
 ## The solution
 
-Find the most common recurring phrases among the good comments and the bad comments and present it.
+Find the most common recurring phrases among the good comments and the bad comments and present it. Therefore, a company won’t have to read all customers’ comments.
+
 
 ## Our approach
 
